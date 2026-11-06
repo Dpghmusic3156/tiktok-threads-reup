@@ -38,7 +38,7 @@ def process_master_audio(
         filters = [
             f"[0:a]highpass=f={highpass_freq},lowpass=f={lowpass_freq},equalizer=f={eq_freq}:width_type=q:width=1.5:g={eq_gain},volume=1.0[voice]",
             f"[1:a]volume={bgm_volume}[bgm]",
-            f"[voice][bgm]amix=inputs=2:duration=first:dropout_transition=2,aformat=sample_rates=48000:channel_layouts=stereo[a_out]"
+            f"[voice][bgm]amix=inputs=2:duration=longest:dropout_transition=2,aformat=sample_rates=48000:channel_layouts=stereo[a_out]"
         ]
         cmd += ["-filter_complex", ";".join(filters), "-map", "[a_out]"]
     else:

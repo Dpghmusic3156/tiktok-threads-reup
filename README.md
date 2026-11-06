@@ -16,11 +16,16 @@ Bộ công cụ tự động hóa chuyên nghiệp dành cho việc **"xào nấ
    - **Âm thanh**: Tự động lọc cắt tần số siêu âm/hạ âm watermark ngầm (`highpass=80Hz`, `lowpass=15000Hz`), tăng cường dải hiện diện giọng nói (`EQ Boost 1.8kHz +2.5dB`), và lồng nhạc nền hot trend ở mức 12% âm lượng.
    - **Hình ảnh**: Thay thế toàn bộ nền parkour/gameplay cũ bằng video nền mới ở tốc độ 100% chuẩn; đoạn Outro giới thiệu sản phẩm được crop 5%, tinh chỉnh màu sắc (Saturation +6%, Contrast +5%) và tạo khung viền mờ nghệ thuật.
 
-3. **Card Threads Chuẩn Giao diện Full HD 1080×1920**:
+3. **Card Threads Chuẩn Giao diện Full HD 1080×1920 & Hỗ trợ Comment Xếp Chồng (Nested Stacking)**:
    - Tự động bo góc mềm mại (Radius 24px), tạo bóng đổ chiều sâu đa lớp (Soft Drop-Shadow).
    - Tự động thêm số trang tiến trình trực quan (`01 / 05`, `02 / 05`...).
+   - **Hỗ trợ comment xếp chồng liên hoàn (`render_stacked_card_overlays`)**: Giải quyết triệt để dạng video Threads có bình luận trả lời liên tiếp (Comment 1 -> Comment 2 -> Comment 3) với khoảng trống giữa các card trong suốt 100%, neo vị trí cố định chống rung giật và không lem nền cũ.
 
-4. **Kích hoạt cờ FastStart**:
+4. **Tải Video Đa Kênh Thông Minh (Dual-Engine Downloader)**:
+   - Tự động tải qua `yt-dlp` tốc độ cao.
+   - Tự động kích hoạt cơ chế dự phòng **SSSTik API** khi gặp bot-challenge hoặc link rút gọn (`vt.tiktok.com`) mà không cần nạp cookie trình duyệt.
+
+5. **Kích hoạt cờ FastStart**:
    - Tự động chèn atom `moov` lên đầu file video (`-movflags +faststart`), giúp video tải tức thì khi xem và tua mượt mà không bị delay trên app TikTok.
 
 ---

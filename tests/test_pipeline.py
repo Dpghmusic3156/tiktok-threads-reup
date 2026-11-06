@@ -12,7 +12,7 @@ sys.path.insert(0, str(BASE_DIR))
 import config
 from modules.downloader import download_tiktok_video
 from modules.scene_detector import detect_scene_cuts
-from modules.card_renderer import render_card_overlay
+from modules.card_renderer import render_card_overlay, render_stacked_card_overlays
 from modules.audio_processor import process_master_audio
 
 
@@ -83,6 +83,27 @@ class TestTikTokThreadsReup(unittest.TestCase):
         calc_duration = total_frames / 60.0
         self.assertEqual(total_frames, 3302)
         self.assertAlmostEqual(calc_duration, 55.033, delta=0.001)
+
+    def test_06_stacked_card_renderer(self):
+        """Verify progressive stacked comment overlays generation."""
+        cards_dir = config.SAMPLES_DIR / "cards"
+        sample_cards = [
+            cards_dir / "card_split_1.png",
+            cards_dir / "card_split_2.png"
+        ]
+        out_stack_dir = config.OUTPUT_DIR / "test_stack"
+        out_paths = render_stacked_card_overlays(
+            comment_paths=sample_cards,
+            output_dir=out_stack_dir,
+            width=1080,
+            height=1920
+        )
+        self.assertEqual(len(out_paths), 2)
+        for p in out_paths:
+            self.assertTrue(p.is_file())
+            with Image.open(p) as img:
+                self.assertEqual(img.size, (1080, 1920))
+                self.assertEqual(img.mode, "RGBA")
 
 
 if __name__ == "__main__":
