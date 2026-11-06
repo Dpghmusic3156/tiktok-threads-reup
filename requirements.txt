@@ -1,0 +1,6 @@
+# TikTok Threads Reup Pipeline - Dependencies
+opencv-python>=4.8.0
+Pillow>=10.0.0
+imageio-ffmpeg>=0.4.9
+numpy>=1.24.0
+yt-dlp>=2024.0.0
